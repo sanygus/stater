@@ -6,19 +6,17 @@ MongoClient.connect('mongodb://localhost:27017/state', function(err, dblink) {
 });
 
 module.exports.addEvent = (data) => {
-  console.log(data);
   db.collection('events').insertOne(data);
 }
 
-module.exports.addState = (data) => {
-  console.log(data);
-  db.collection('state').insertOne(data);
+module.exports.addHB = (data) => {
+  db.collection('heartbeat').insertOne(data);
 }
 
-module.exports.addWebHook = (data) => {
+/*module.exports.addWebHook = (data) => {
   console.log(data);
   db.collection('webhook').insertOne(data);
-}
+}*/
 
 module.exports.searchWebHook = (params, callback) => {
   //params = { devid, type }

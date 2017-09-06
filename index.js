@@ -13,19 +13,9 @@ app.get('/event/:devid/:type', (req, res) => {
   });
 });
 
-app.get('/state/:devid/:component', (req, res) => {
-  db.addState(Object.assign({}, req.query, req.params));
+app.get('/heartbeat/:devid/:component', (req, res) => {
+  db.addHB(Object.assign({}, req.query, req.params));
   res.type('application/json').status(200).send({ok: true});
-});
-
-app.get('/webhook/:devid/:type', (req, res) => {
-  const { url } = req.query;
-  if (url) {
-    db.addWebHook(Object.assign({}, { url }, req.params));
-    res.type('application/json').status(200).send({ok: true});
-  } else {
-    res.type('application/json').status(400).send({ok: false});
-  }
 });
 
 app.listen(options.port);
