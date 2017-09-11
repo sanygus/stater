@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 let db;
-MongoClient.connect('mongodb://localhost:27017/state', function(err, dblink) {
+MongoClient.connect('mongodb://localhost:27017/devsdb', function(err, dblink) {
   if (err) { console.error(err); }
   db = dblink;
 });
@@ -10,7 +10,7 @@ module.exports.addEvent = (data) => {
 }
 
 module.exports.addHB = (data) => {
-  db.collection('heartbeat').insertOne(data);
+  db.collection('heartbeats').insertOne(data);
 }
 
 /*module.exports.addWebHook = (data) => {
