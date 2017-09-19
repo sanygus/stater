@@ -13,12 +13,12 @@ app.get('/event/:devid/:event', (req, res) => {
   res.type('application/json').status(200).send({ok: true});
   db.searchWebHook(req.params, (err, urlsarr) => {
     for (let urlobj of urlsarr) {
-      request.get(urlobj.url);
+      request.get(urlobj.url).on('error', () => {});
     }
   });
 });
 
-app.get('/heartbeat/:devid/:component', (req, res) => {
+app.get('/heartbeat/:devid/:component', (req, res) => {//req.query.charge "undefined"
   req.params.devid = parseInt(req.params.devid);
   if (req.query.charge !== undefined) { req.query.charge = parseFloat(req.query.charge); }
   db.addHB(Object.assign({ recDate: new Date().toJSON() }, req.query, req.params));
