@@ -26,6 +26,7 @@ app.get('/heartbeat/:devid/:component', (req, res) => {//req.query.charge "undef
     let action = 0;
     if (wake[req.params.devid]) {
       action = 1;
+      console.log(`return wake for ${req.params.devid}`);
       wake[req.params.devid] = false;
     }
     res.type('text/plain').status(200).send(action.toString());
