@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 let db;
-MongoClient.connect('mongodb://localhost:27017/devsdb', function(err, dblink) {
+MongoClient.connect('mongodb://sunputer-db:27017/devsdb', function(err, dblink) {
   if (err) { console.error(err); }
   db = dblink;
 });
